@@ -8,13 +8,14 @@ public class SceneTransition : MonoBehaviour
     public string sceneToload;
 
 
-    public void OnCollisionEnter2D(Collision2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.gameObject.tag == "Player")
-        {
+       if (other.gameObject.tag == "Player")
+       {
+            Debug.Log("next scene");
             SceneManager.LoadScene(sceneToload);
-        }
+       }
     }
 
 
