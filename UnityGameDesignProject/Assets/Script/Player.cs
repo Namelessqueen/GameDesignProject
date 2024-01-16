@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
 
     float inputhorizontal;
     public bool isJumping = false;
+    public bool onGround;
 
 
     void Start()
@@ -46,6 +47,14 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Ground")
         {
             isJumping = false;
+            onGround = true;
+        }
+    }
+    void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            onGround = false;
         }
     }
 }

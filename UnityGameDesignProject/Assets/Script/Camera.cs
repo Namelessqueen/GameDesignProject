@@ -27,7 +27,6 @@ public class Camera : MonoBehaviour
         MovementX();
         //MovementY();
 
-
     }
 
     void MovementX()
