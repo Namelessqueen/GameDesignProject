@@ -5,50 +5,50 @@ using UnityEngine.SceneManagement;
 
 public class LadderScript : MonoBehaviour
 {
-    public bool collissionPlayer;
+    private float vertical;
+    private bool isLadder;
+    private bool isClimbing;
     public GameObject Player;
-    Player Playerscript;
     Rigidbody2D rb;
-
+    int climbingSpeed = 5;
+    
 
     void Start()
     {
-        Playerscript = Player.GetComponent<Player>();
         rb = Player.GetComponent<Rigidbody2D>();
     }
     void Update()
     {
+        vertical = Input.GetAxis("Vertical");
 
-        if (collissionPlayer)
+        if(isLadder && Mathf.Abs(vertical) > 0)
         {
-            //rb.velocity = new Vector2(rb.velocity.y, 0);
-            /*if (!Playerscript.onGround)
-            {
-                Debug.Log("not jumping");
-                rb.velocity = new Vector2(rb.velocity.y, 0);
-            }*/
-
-          if (Input.GetKey(KeyCode.W)) 
-          { 
-            //Debug.Log("ladder up");
-            Playerscript.enabled = false;
-            rb.velocity = new Vector2(0, 5);
-          }
-          else
-          {
-                Playerscript.enabled = true;
-          }
-
+            isClimbing = true;
         }
+    }
+    private void FixedUpdate()
+    {
+        if (isClimbing)
+        {
+            rb.gravityScale = 0f;
+            rb.velocity = new Vector2(rb.velocity.x, vertical * climbingSpeed);
 
+            if(Mathf.Abs(vertical) > 0)
+            {
+                rb.velocity = new Vector2(0, vertical * climbingSpeed);
+            }
+        }
+        else 
+        {
+            rb.gravityScale = 2f;
+        }
     }
 
     public void OnTriggerStay2D(Collider2D other)
     {
-
         if (other.gameObject.tag == "Player")
         {
-            collissionPlayer = true;
+            isLadder = true;
         }
     }
 
@@ -57,7 +57,8 @@ public class LadderScript : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
-            collissionPlayer = false;
+            isLadder = false;
+            isClimbing = false;
         }
     }
 

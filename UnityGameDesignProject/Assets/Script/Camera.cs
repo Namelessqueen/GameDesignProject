@@ -5,12 +5,15 @@ using UnityEngine;
 public class Camera : MonoBehaviour
 {
     Rigidbody rb;
+    Rigidbody2D rbPlayer;
     public GameObject Player;
     Player Playerscript;
-    float cameraDisctance = 5f;
+    float cameraDisctance = 4.5f;
+    public float cameraDisctanceY = 3f;
     public float cameraLag = 0.2f;
 
-
+    private float velocityX;
+    private float velocityY;
     float distX;
     float distY;
 
@@ -19,51 +22,59 @@ public class Camera : MonoBehaviour
         
         Playerscript = Player.GetComponent<Player>();
         rb = GetComponent<Rigidbody>();
+        rbPlayer = Player.GetComponent<Rigidbody2D>();
     }
 
 
     void Update()
     {
-        MovementX();
-        //MovementY();
-
+        Debug.Log(distX);
+        MovementX(); 
+        MovementY();
+        rb.velocity = new Vector2(velocityX, velocityY);
     }
 
-    void MovementX()
+    float MovementX()
     {
         distX = Player.transform.position.x - transform.position.x;
+
+
         if (distX > cameraDisctance)
         {
-            rb.velocity = new Vector2(Playerscript.walkspeed - cameraLag, 0);
+            velocityX = Playerscript.walkspeed - cameraLag;
         }
         else if (distX < -cameraDisctance)
         {
-            rb.velocity = new Vector2(-Playerscript.walkspeed + cameraLag, 0);
+            velocityX = -Playerscript.walkspeed + cameraLag;
         }
         else
         {
-            rb.velocity = new Vector2(0, 0);
+            velocityX = 0f;
+ 
         }
+
+        return velocityX;
     }
 
     //gonna be needed once I Start on the cloud and ladder system
-    /*
-    void MovementY()
+
+    float MovementY()
     {
         distY = Player.transform.position.y - transform.position.y;
-        if (distY > cameraDisctance)
+        if (distY > cameraDisctanceY)
         {
-            rb.velocity = new Vector2(Playerscript.walkspeed - cameraLag, 0);
+            velocityY = rbPlayer.velocity.y;
         }
-        else if (distY < -cameraDisctance)
+        else if (distY < -cameraDisctanceY)
         {
-            rb.velocity = new Vector2(-Playerscript.walkspeed + cameraLag, 0);
+            velocityY = rbPlayer.velocity.y;
         }
         else
         {
-            rb.velocity = new Vector2(0, 0);
+            velocityY = 0f;
         }
+        return velocityY;
     }
-    */
+    
 
 }
