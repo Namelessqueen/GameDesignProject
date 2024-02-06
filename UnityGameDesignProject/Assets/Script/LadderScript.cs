@@ -8,7 +8,7 @@ public class LadderScript : MonoBehaviour
 {
     private float vertical;
     private bool isLadder;
-    public bool isClimbing;
+    private bool isClimbing;
     public  bool movable = false;
     public GameObject Player;
     public GameObject topCollider;
@@ -18,7 +18,7 @@ public class LadderScript : MonoBehaviour
     
     void Start()
     {
-        rb = Player.GetComponent<Rigidbody2D>();
+       
         top = topCollider.GetComponent<EdgeCollider2D>();
     }
     void Update()
@@ -44,7 +44,7 @@ public class LadderScript : MonoBehaviour
                 //top.isTrigger = true;
             }
         }
-        else 
+        else if (rb != null)
         {
             rb.gravityScale = 2f;
             top.isTrigger = false;
@@ -55,8 +55,8 @@ public class LadderScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            rb = Player.GetComponent<Rigidbody2D>();
             isLadder = true;
-            Debug.Log(rb);
 
             if (movable && isClimbing)
             {
