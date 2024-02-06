@@ -10,8 +10,6 @@ public class MovebleOjbectScript : MonoBehaviour
     float Pingpong;
     public float speed = 1f;
     public float dist = 5f;
-    //public GameObject Player;
-    //Rigidbody2D rb;
 
     void Start()
     {
