@@ -8,14 +8,17 @@ public class LadderScript : MonoBehaviour
     private float vertical;
     private bool isLadder;
     private bool isClimbing;
+    public  bool movable = false;
     public GameObject Player;
+    public GameObject topCollider;
     Rigidbody2D rb;
+    EdgeCollider2D top;
     int climbingSpeed = 5;
     
-
     void Start()
     {
         rb = Player.GetComponent<Rigidbody2D>();
+        top = topCollider.GetComponent<EdgeCollider2D>();
     }
     void Update()
     {
@@ -32,15 +35,17 @@ public class LadderScript : MonoBehaviour
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, vertical * climbingSpeed);
-
-            if(Mathf.Abs(vertical) > 0)
+            top.isTrigger = true;
+            if (Mathf.Abs(vertical) > 0)
             {
                 rb.velocity = new Vector2(0, vertical * climbingSpeed);
+                //top.isTrigger = true;
             }
         }
         else 
         {
             rb.gravityScale = 2f;
+            top.isTrigger = false;
         }
     }
 
@@ -49,16 +54,25 @@ public class LadderScript : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             isLadder = true;
+            if (movable && isClimbing)
+            {
+                other.gameObject.transform.SetParent(transform);
+            }
+
         }
     }
 
     public void OnTriggerExit2D(Collider2D other)
     {
-
         if (other.gameObject.tag == "Player")
         {
             isLadder = false;
             isClimbing = false;
+            if (movable)
+            {
+                other.gameObject.transform.SetParent(null);
+            }
+
         }
     }
 

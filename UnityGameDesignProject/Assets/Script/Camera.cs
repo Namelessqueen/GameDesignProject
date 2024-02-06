@@ -28,7 +28,7 @@ public class Camera : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(distX);
+        //Debug.Log(distX);
         MovementX(); 
         MovementY();
         rb.velocity = new Vector2(velocityX, velocityY);

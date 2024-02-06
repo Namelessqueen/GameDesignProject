@@ -39,6 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: FarBackground
+    uniqueID: 3980996269
+    locked: 0
+  - name: Background
+    uniqueID: 1363320403
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Objects
+    uniqueID: 1459018491
+    locked: 0
+  - name: Player
+    uniqueID: 1500844869
     locked: 0
