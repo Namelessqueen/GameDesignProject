@@ -4,77 +4,15 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour
 {
-    Rigidbody rb;
-    Rigidbody2D rbPlayer;
-    public GameObject Player;
-    Player Playerscript;
-    float cameraDisctance = 4.5f;
-    public float cameraDisctanceY = 3f;
-    public float cameraLag = 0.2f;
+    private Vector3 offset = new Vector3(0f, 0f, -10f);
+    private float smoothTime = 0.25f;
+    private Vector3 velocity = Vector3.zero;
 
-    private float velocityX;
-    private float velocityY;
-    float distX;
-    float distY;
+    [SerializeField] private Transform target;
 
-    void Start()
+    private void FixedUpdate()
     {
-        
-        Playerscript = Player.GetComponent<Player>();
-        rb = GetComponent<Rigidbody>();
-        rbPlayer = Player.GetComponent<Rigidbody2D>();
+        Vector3 targetPosition = target.position + offset;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
-
-
-    void Update()
-    {
-        //Debug.Log(distX);
-        MovementX(); 
-        MovementY();
-        rb.velocity = new Vector2(velocityX, velocityY);
-    }
-
-    float MovementX()
-    {
-        distX = Player.transform.position.x - transform.position.x;
-
-
-        if (distX > cameraDisctance)
-        {
-            velocityX = Playerscript.walkspeed - cameraLag;
-        }
-        else if (distX < -cameraDisctance)
-        {
-            velocityX = -Playerscript.walkspeed + cameraLag;
-        }
-        else
-        {
-            velocityX = 0f;
- 
-        }
-
-        return velocityX;
-    }
-
-    //gonna be needed once I Start on the cloud and ladder system
-
-    float MovementY()
-    {
-        distY = Player.transform.position.y - transform.position.y;
-        if (distY > cameraDisctanceY)
-        {
-            velocityY = rbPlayer.velocity.y;
-        }
-        else if (distY < -cameraDisctanceY)
-        {
-            velocityY = rbPlayer.velocity.y;
-        }
-        else
-        {
-            velocityY = 0f;
-        }
-        return velocityY;
-    }
-    
-
 }
