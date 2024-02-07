@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 6834880125564507800}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f13fc5f387cd24f9b520c8160d7afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocityInheritPercent: 0.8
 --- !u!61 &7931960508526294676
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -437,7 +438,7 @@ GameObject:
   - component: {fileID: 536071244870314531}
   m_Layer: 0
   m_Name: PF Village Props - Elevator
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

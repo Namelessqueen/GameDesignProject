@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -24,10 +25,17 @@ public class Player : MonoBehaviour
     void Update()
     {
         inputhorizontal = Input.GetAxisRaw("Horizontal");
+        GameOver();
+        Movement();
 
+      
+    }
+
+    void Movement()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
-            Debug.Log("JUMP");;
+            Debug.Log("JUMP"); ;
             player.velocity = new Vector2(player.velocity.x, JumpHeight);
             isJumping = true;
         }
@@ -55,6 +63,14 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Ground")
         {
             onGround = false;
+        }
+    }
+
+    void GameOver()
+    {
+        if (transform.position.y < -15)
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
 }

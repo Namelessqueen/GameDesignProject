@@ -8,6 +8,7 @@ public class MovebleOjbectScript : MonoBehaviour
     float PosX;
     float MovementX;
     float Pingpong;
+    public bool reverse = false;
     public float speed = 1f;
     public float dist = 5f;
 
@@ -18,9 +19,13 @@ public class MovebleOjbectScript : MonoBehaviour
 
     void Update()
     {
-            Pingpong = Mathf.PingPong(Time.time * speed, dist);
-            MovementX = PosX + Pingpong;
-            transform.position = new Vector2(MovementX, transform.position.y);
+        if (reverse)
+        {MovementX = PosX - Pingpong;}
+        else
+        {MovementX = PosX + Pingpong; }
+
+        Pingpong = Mathf.PingPong(Time.time * speed, dist);
+        transform.position = new Vector2(MovementX, transform.position.y);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
