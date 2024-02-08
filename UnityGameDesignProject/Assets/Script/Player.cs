@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float JumpHeight = 10f;
 
     float inputhorizontal;
-    public bool isJumping = false;
+    private bool isJumping = false;
     public bool onGround;
 
 
@@ -35,7 +35,6 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
-            Debug.Log("JUMP"); ;
             player.velocity = new Vector2(player.velocity.x, JumpHeight);
             isJumping = true;
         }

@@ -7,17 +7,29 @@ public class SceneTransition : MonoBehaviour
 {
     public string sceneToload;
 
-    public void OnTriggerStay2D(Collider2D other)
+    public void Update()
     {
-        if (other.gameObject.tag == "Player")
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("GameOver"))
         {
-            if (Input.GetKey(KeyCode.Space))
+            if(Input.GetKeyUp(KeyCode.Space))
             {
-                Debug.Log("next scene");
                 SceneManager.LoadScene(sceneToload);
             }
         }
     }
 
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+               LoadNextScene();
+        }
+    }
+   
+
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(sceneToload);
+    }
 
 }

@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8301887, g: 0.6304735, b: 0.8042635, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6cf9c43540adb3c498147a08d575b23c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -121,8 +121,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: 0, y: -0.007658601}
+  m_Size: {x: 1, y: 1.9846828}
   m_Direction: 0
 --- !u!114 &7424199966941875285
 MonoBehaviour:
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e253aa85c62d28b4eaf1686bc9d5f681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkspeed: 3
+  walkspeed: 5
   JumpHeight: 8
   isJumping: 0
   onGround: 0
